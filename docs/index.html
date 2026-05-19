@@ -114,18 +114,59 @@
     </header>
 
     <nav class="toc" aria-label="Course sections">
+      <a href="#course-map">Course Map</a>
+      <a href="#prerequisites">Prerequisites</a>
       <a href="#foundations">Foundations</a>
       <a href="#supervised">Supervised</a>
+      <a href="#baselines">Baselines</a>
       <a href="#training-math">Training Math</a>
       <a href="#evaluation">Evaluation</a>
+      <a href="#roc-pr">ROC/PR</a>
+      <a href="#imbalance">Imbalance</a>
       <a href="#cleaning">Data Cleaning</a>
-      <a href="#workflow">Workflow</a>
+      <a href="#encoding">Encoding</a>
+      <a href="#pipelines">Pipelines</a>
+      <a href="#cross-validation">Cross-Validation</a>
+      <a href="#tuning">Tuning</a>
       <a href="#broader-ai">Broader AI</a>
+      <a href="#responsible-ml">Responsible ML</a>
       <a href="#practical">Practical</a>
       <a href="#notebooks">Notebooks</a>
+      <a href="#glossary">Glossary</a>
     </nav>
 
     <main>
+      <section id="course-map" class="panel">
+        <h2>Course Map</h2>
+        <p>By the end of this course, students will be able to:</p>
+        <ol>
+          <li>Explain the difference between AI, ML, and deep learning.</li>
+          <li>Distinguish supervised, unsupervised, and reinforcement learning.</li>
+          <li>Build regression and classification models.</li>
+          <li>Interpret loss functions and gradient descent at an introductory level.</li>
+          <li>Select suitable evaluation metrics for each task type.</li>
+          <li>Clean data and prepare features correctly.</li>
+          <li>Prevent leakage using proper splits and pipelines.</li>
+          <li>Compare models using baselines and cross-validation.</li>
+          <li>Tune models without misusing the test set.</li>
+          <li>Discuss fairness, bias, and responsible model use.</li>
+        </ol>
+      </section>
+
+      <section id="prerequisites" class="panel">
+        <h2>Prerequisites and Student Expectations</h2>
+        <p>
+          This course is designed for beginners in machine learning. Students should
+          be comfortable with:
+        </p>
+        <ul>
+          <li>Basic Python syntax: variables, functions, lists, and loops.</li>
+          <li>Reading simple tables with pandas.</li>
+          <li>Basic algebra, especially equations, averages, and graphs.</li>
+          <li>A willingness to experiment, make mistakes, and interpret results.</li>
+        </ul>
+        <p>No prior machine learning experience is required.</p>
+      </section>
       <section id="foundations" class="panel">
         <h2>Foundations: Why ML, AI-ML-DL, and Learning Types</h2>
 
@@ -308,6 +349,70 @@
           Threshold \(\tau\) should be chosen based on business cost trade-offs, not
           arbitrary defaults.
         </p>
+
+        <h3>Logistic Regression: A First Classification Model</h3>
+        <p>
+          Logistic regression is a beginner-friendly model for binary classification.
+          It predicts probabilities between 0 and 1.
+        </p>
+        <div class="formula">
+          \[
+          P(y=1 \mid x)=\sigma(z)
+          \]
+        </div>
+        <p class="formula-note">
+          Meaning: probability of positive class is computed by applying sigmoid
+          function to model score \(z\).
+        </p>
+        <div class="formula">
+          \[
+          z=w_1x_1 + w_2x_2 + \dots + w_dx_d + b
+          \]
+        </div>
+        <p class="formula-note">
+          Meaning: \(z\) is a weighted sum of features plus bias.
+        </p>
+        <div class="formula">
+          \[
+          \sigma(z)=\frac{1}{1+e^{-z}}
+          \]
+        </div>
+        <p class="formula-note">
+          Meaning: sigmoid squashes any real value into the range 0 to 1.
+        </p>
+        <ul>
+          <li>Probability near 1 means strong positive prediction.</li>
+          <li>Probability near 0 means strong negative prediction.</li>
+          <li>Thresholding converts probabilities into final class labels.</li>
+          <li>Logistic regression is fast, interpretable, and strong as a baseline.</li>
+        </ul>
+      </section>
+
+      <section id="baselines" class="panel">
+        <h2>Baselines: What Counts as a Good Model?</h2>
+        <p>
+          Before training advanced models, compare against a simple baseline. A
+          baseline is a very simple prediction strategy used as a reference point.
+        </p>
+
+        <h3>Regression Baseline</h3>
+        <p>Predict the average target value for every example.</p>
+        <ul>
+          <li>If average bike demand is 120 rentals, baseline predicts 120 every time.</li>
+          <li>Useful model must outperform this simple strategy.</li>
+        </ul>
+
+        <h3>Classification Baseline</h3>
+        <p>Predict the most common class for every example.</p>
+        <ul>
+          <li>If 88% of customers do not subscribe, naive model predicts "no" for everyone.</li>
+          <li>High accuracy alone can hide poor usefulness.</li>
+        </ul>
+
+        <p>
+          A machine learning model is useful only when it performs meaningfully better
+          than baseline.
+        </p>
       </section>
 
       <section id="training-math" class="panel">
@@ -461,6 +566,53 @@
         </p>
       </section>
 
+      <section id="roc-pr" class="panel">
+        <h2>Beyond Accuracy: ROC-AUC and Precision-Recall</h2>
+        <p>
+          Classification performance changes as threshold changes, so we also evaluate
+          ranking quality across many thresholds.
+        </p>
+
+        <h3>ROC Curve</h3>
+        <p>ROC compares True Positive Rate and False Positive Rate.</p>
+        <div class="formula">
+          \[
+          \text{TPR}=\frac{TP}{TP+FN}, \quad \text{FPR}=\frac{FP}{FP+TN}
+          \]
+        </div>
+        <p class="formula-note">
+          Meaning: TPR tells how many real positives are found; FPR tells how often negatives are wrongly flagged.
+        </p>
+
+        <h3>ROC-AUC</h3>
+        <p>
+          ROC-AUC summarizes threshold-independent ranking quality. AUC of 1.0 is
+          perfect ranking, 0.5 is near-random ranking.
+        </p>
+
+        <h3>Precision-Recall Curve</h3>
+        <p>
+          Precision-recall analysis is especially useful when positive class is rare.
+          For imbalanced data, PR curves, ROC-AUC, precision, recall, and F1 are often
+          more informative than accuracy.
+        </p>
+      </section>
+
+      <section id="imbalance" class="panel">
+        <h2>Class Imbalance</h2>
+        <p>
+          Some classification datasets have far more examples of one class than another.
+          In this case, naive models can appear accurate while being useless.
+        </p>
+        <ul>
+          <li>Example: 90% "no", 10% "yes" can yield 90% accuracy by predicting "no" always.</li>
+          <li>Inspect class proportions early before model training.</li>
+          <li>Use precision, recall, F1, ROC-AUC, and PR curves for evaluation.</li>
+          <li>Consider class weights or resampling strategies.</li>
+          <li>Choose thresholds using real error costs, not defaults only.</li>
+        </ul>
+      </section>
+
       <section id="cleaning" class="panel">
         <h2>Data Cleaning and Feature Scaling</h2>
 
@@ -497,8 +649,71 @@
         </p>
       </section>
 
-      <section id="workflow" class="panel">
-        <h2>End-to-End Workflow and Validation Discipline</h2>
+      <section id="encoding" class="panel">
+        <h2>Feature Engineering and Encoding Categorical Variables</h2>
+        <p>
+          Many real datasets contain text categories like city, weather condition, job
+          type, or education level. Most ML models require numeric features, so we
+          must encode categories.
+        </p>
+
+        <h3>One-Hot Encoding</h3>
+        <p>A category column is converted into binary indicator columns.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Color</th>
+              <th>Red</th>
+              <th>Blue</th>
+              <th>Green</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Red</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Blue</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Important warning: fit encoding on training data only, then apply same
+          mapping to validation and test sets.
+        </p>
+      </section>
+
+      <section id="pipelines" class="panel">
+        <h2>Pipelines: Preventing Leakage and Keeping Workflows Clean</h2>
+        <p>
+          A pipeline combines preprocessing and modeling into one repeatable process.
+        </p>
+        <div class="formula">
+          \[
+          \text{Impute Missing Values} \rightarrow
+          \text{Scale Features} \rightarrow
+          \text{Train Model}
+          \]
+        </div>
+        <p class="formula-note">
+          Meaning: every split gets identical preprocessing and model steps.
+        </p>
+
+        <h3>Why Pipelines Matter</h3>
+        <ul>
+          <li>Apply preprocessing consistently across train, validation, and test data.</li>
+          <li>Reduce accidental leakage from validation/test into training steps.</li>
+          <li>Improve reproducibility and experiment tracking.</li>
+          <li>Integrate naturally with cross-validation and hyperparameter search.</li>
+        </ul>
+
+        <h3>End-to-End Workflow</h3>
 
         <div class="formula">
           \[
@@ -523,6 +738,46 @@
           <li>Overfitting: strong training but weak test performance.</li>
         </ul>
         <p>Do not repeatedly tune on the test set.</p>
+      </section>
+
+      <section id="cross-validation" class="panel">
+        <h2>Cross-Validation: More Reliable Model Evaluation</h2>
+        <p>
+          A single train-validation split can be misleading when that split happens to
+          be unusually easy or unusually hard.
+        </p>
+
+        <h3>K-Fold Cross-Validation</h3>
+        <ol>
+          <li>Split the data into \(K\) folds.</li>
+          <li>Train on \(K-1\) folds.</li>
+          <li>Validate on the remaining fold.</li>
+          <li>Repeat until every fold has been validation once.</li>
+          <li>Average all validation scores.</li>
+        </ol>
+        <p>
+          Cross-validation gives a more stable performance estimate, especially on
+          smaller datasets.
+        </p>
+      </section>
+
+      <section id="tuning" class="panel">
+        <h2>Hyperparameter Tuning</h2>
+        <p>
+          Hyperparameters are settings chosen before training begins, such as tree
+          depth, regularization strength, learning rate, or number of estimators.
+        </p>
+        <h3>Tuning Process</h3>
+        <ol>
+          <li>Choose candidate values.</li>
+          <li>Train models on training data.</li>
+          <li>Compare using validation or cross-validation scores.</li>
+          <li>Select the best configuration.</li>
+          <li>Evaluate once on held-out test set.</li>
+        </ol>
+        <p>
+          The test set should not be used repeatedly during tuning.
+        </p>
       </section>
 
       <section id="broader-ai" class="panel">
@@ -557,6 +812,22 @@
         <ul>
           <li>Produces new text, images, code, audio, and video content.</li>
           <li>Differs from predictive ML, which predicts labels or numeric values.</li>
+        </ul>
+      </section>
+
+      <section id="responsible-ml" class="panel">
+        <h2>Responsible Machine Learning</h2>
+        <p>
+          A model can perform well overall while still failing specific groups of
+          people. Responsible ML evaluates impact, not just performance metrics.
+        </p>
+        <h3>Questions To Ask</h3>
+        <ul>
+          <li>Who is represented in training data and who is missing?</li>
+          <li>Are errors distributed fairly across different groups?</li>
+          <li>Could false positives or false negatives cause disproportionate harm?</li>
+          <li>Is this prediction task appropriate and ethical in context?</li>
+          <li>Are we transparent about limitations and uncertainty?</li>
         </ul>
       </section>
 
@@ -757,6 +1028,22 @@ jupyter notebook</code></pre>
             >Fallback open link</a
           >
         </div>
+      </section>
+
+      <section id="glossary" class="panel">
+        <h2>Glossary</h2>
+        <ul>
+          <li><strong>Feature:</strong> An input variable used by a model.</li>
+          <li><strong>Target:</strong> The value or label the model tries to predict.</li>
+          <li><strong>Model:</strong> A learned mapping from inputs to outputs.</li>
+          <li><strong>Loss:</strong> A number measuring prediction error.</li>
+          <li><strong>Metric:</strong> A quantity used to evaluate model performance.</li>
+          <li><strong>Baseline:</strong> A simple reference model.</li>
+          <li><strong>Overfitting:</strong> Strong training performance but weak unseen-data performance.</li>
+          <li><strong>Underfitting:</strong> Failing to capture meaningful patterns.</li>
+          <li><strong>Data leakage:</strong> Using information during training that would not exist in real deployment.</li>
+          <li><strong>Cross-validation:</strong> Repeated evaluation across multiple train-validation splits.</li>
+        </ul>
       </section>
     </main>
   </body>
