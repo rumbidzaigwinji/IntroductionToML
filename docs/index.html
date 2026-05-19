@@ -70,56 +70,6 @@
             forceNotebookDownload(file, name);
           });
         });
-
-        const jokes = [
-          "Why did the model go to therapy? It had too much training data but no validation.",
-          "I told my model to be confident. It became overfit immediately.",
-          "Machine learning is 10% math, 20% code, and 70% asking: 'why is this NaN?'",
-          "My model said it was accurate. The test set said: 'cute story.'"
-        ];
-
-        const pepTalks = [
-          "Today we are not memorizing formulas. We are solving real problems with structure.",
-          "If a formula looks scary, translate symbols into plain language one piece at a time.",
-          "Small progress in ML compounds fast. Clean data + good questions = better models.",
-          "Mistakes in notebooks are part of learning. Debugging is a core ML skill."
-        ];
-
-        const jokeButton = document.getElementById("joke-btn");
-        const jokeText = document.getElementById("joke-text");
-        if (jokeButton && jokeText) {
-          jokeButton.addEventListener("click", () => {
-            const joke = jokes[Math.floor(Math.random() * jokes.length)];
-            jokeText.textContent = joke;
-          });
-        }
-
-        const pepButton = document.getElementById("pep-btn");
-        const pepText = document.getElementById("pep-text");
-        if (pepButton && pepText) {
-          pepButton.addEventListener("click", () => {
-            const line = pepTalks[Math.floor(Math.random() * pepTalks.length)];
-            pepText.textContent = line;
-          });
-        }
-
-        const conceptButtons = document.querySelectorAll("[data-concept-answer]");
-        const conceptResult = document.getElementById("concept-result");
-        conceptButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const answer = button.getAttribute("data-concept-answer");
-            if (!conceptResult) {
-              return;
-            }
-            if (answer === "no") {
-              conceptResult.textContent =
-                "Correct. Accuracy alone can hide poor performance in imbalanced classes.";
-            } else {
-              conceptResult.textContent =
-                "Not quite. Accuracy can be misleading in imbalanced datasets.";
-            }
-          });
-        });
       });
     </script>
   </head>
@@ -164,7 +114,6 @@
     </header>
 
     <nav class="toc" aria-label="Course sections">
-      <a href="#fun-zone">Fun Zone</a>
       <a href="#foundations">Foundations</a>
       <a href="#supervised">Supervised</a>
       <a href="#training-math">Training Math</a>
@@ -177,42 +126,6 @@
     </nav>
 
     <main>
-      <section id="fun-zone" class="panel fun-panel">
-        <h2>Fun and Interactive Warm-Up</h2>
-        <p>
-          Let’s set the tone: curiosity first, fear later. Click around before diving
-          into the technical sections.
-        </p>
-        <div class="fun-grid">
-          <article class="fun-card">
-            <h3>ML Joke Generator</h3>
-            <button type="button" class="btn" id="joke-btn">Tell Me A Nerdy Joke</button>
-            <p id="joke-text" class="fun-text">Click the button for a fresh joke.</p>
-          </article>
-          <article class="fun-card">
-            <h3>Tutor Pep Talk</h3>
-            <button type="button" class="btn" id="pep-btn">Give Me Energy</button>
-            <p id="pep-text" class="fun-text">
-              Click to get a short mindset reset before teaching.
-            </p>
-          </article>
-        </div>
-        <article class="fun-card concept-check">
-          <h3>Quick Concept Check</h3>
-          <p>
-            Question: If a model has 99% accuracy on an imbalanced dataset, is it
-            automatically a great model?
-          </p>
-          <div class="actions">
-            <button type="button" class="btn" data-concept-answer="yes">Yes</button>
-            <button type="button" class="btn" data-concept-answer="no">No</button>
-          </div>
-          <p id="concept-result" class="fun-text">
-            Pick an answer to reveal feedback.
-          </p>
-        </article>
-      </section>
-
       <section id="foundations" class="panel">
         <h2>Foundations: Why ML, AI-ML-DL, and Learning Types</h2>
 
