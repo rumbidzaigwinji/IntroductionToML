@@ -3,250 +3,263 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IndabaX Zimbabwe | Intro to ML Course Hub</title>
+    <title>Introduction to ML | Teaching Website</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=Syne:wght@500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js" defer></script>
   </head>
   <body>
-    <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
-    <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
-    <header class="site-header reveal">
-      <p class="eyebrow">Deep Learning IndabaX Zimbabwe</p>
-      <h1>Intro to ML Teaching Hub</h1>
-      <p class="subhead">
-        A single place to run your tutoring sessions: slide flow, module sequence,
-        practical labs, and competition assets.
+    <header class="hero">
+      <p class="tag">Deep Learning IndabaX Zimbabwe</p>
+      <h1>Introduction to Machine Learning</h1>
+      <p class="lead">
+        This page is the full teaching flow for the course. You can teach directly
+        from here without opening other content pages.
       </p>
-      <div class="header-actions">
-        <a class="button button-primary" href="../slides/IndabaX_Zimbabwe_Intro_to_ML.pptx"
-          >Open Slides</a
-        >
-        <a class="button" href="../modules/README.md">Open Module Notes</a>
-        <a class="button" href="../notebooks/README.md">Open Notebook Track</a>
-      </div>
-      <dl class="stat-grid">
-        <div>
-          <dt>Modules</dt>
-          <dd>8</dd>
-        </div>
-        <div>
-          <dt>Notebooks</dt>
-          <dd>3</dd>
-        </div>
-        <div>
-          <dt>Slides</dt>
-          <dd>42</dd>
-        </div>
-      </dl>
+      <p class="flow">
+        Slide Flow: Foundations -> Supervised Learning -> Training Math -> Metrics ->
+        Data Cleaning -> Workflow -> Broader AI -> Practical Roadmap
+      </p>
     </header>
 
+    <nav class="toc" aria-label="Course sections">
+      <a href="#overview">Overview</a>
+      <a href="#module-1">M1</a>
+      <a href="#module-2">M2</a>
+      <a href="#module-3">M3</a>
+      <a href="#module-4">M4</a>
+      <a href="#module-5">M5</a>
+      <a href="#module-6">M6</a>
+      <a href="#module-7">M7</a>
+      <a href="#module-8">M8</a>
+      <a href="#notebooks">Notebooks</a>
+    </nav>
+
     <main>
-      <section class="panel reveal">
-        <div class="panel-head">
-          <h2>Session Control</h2>
-          <button id="resetProgress" class="button button-ghost" type="button">
-            Reset Progress
-          </button>
-        </div>
+      <section id="overview" class="panel">
+        <h2>Course Overview</h2>
         <p>
-          Tick each module as you teach. Progress is saved in your browser for the
-          next tutoring session.
+          This course explains how ML works from first principles, then applies those
+          ideas in notebooks. The key outcomes are:
         </p>
-        <div class="progress-wrap" role="presentation">
-          <div id="progressBar" class="progress-bar"></div>
-        </div>
-        <p id="progressText" class="muted">0 of 8 modules complete</p>
+        <ul>
+          <li>Differentiate AI, ML, and Deep Learning clearly.</li>
+          <li>Know when to use regression vs classification.</li>
+          <li>Understand training objective, loss, and gradient descent intuition.</li>
+          <li>Choose the right evaluation metric for the business problem.</li>
+          <li>Run a complete end-to-end ML workflow on real data.</li>
+        </ul>
       </section>
 
-      <section class="reveal">
-        <div class="section-head">
-          <h2>Module Roadmap</h2>
-          <p>Mapped directly to your 42-slide deck.</p>
-        </div>
-        <div class="card-grid">
-          <article class="module-card" data-module-id="module-1">
-            <div class="card-top">
-              <p>Slides 1-7</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-1" />
-                Done
-              </label>
-            </div>
-            <h3>1. Foundations: AI, ML, DL, and ML Types</h3>
-            <p>Distinguish AI, ML, and DL and classify tasks by learning type.</p>
-            <a href="../modules/01_foundations_ai_ml_dl_and_ml_types.md">Open module</a>
-          </article>
-
-          <article class="module-card" data-module-id="module-2">
-            <div class="card-top">
-              <p>Slides 8-13</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-2" />
-                Done
-              </label>
-            </div>
-            <h3>2. Supervised Learning: Regression vs Classification</h3>
-            <p>Teach output types, probability intuition, and binary vs multiclass framing.</p>
-            <a href="../modules/02_supervised_learning_regression_vs_classification.md"
-              >Open module</a
-            >
-          </article>
-
-          <article class="module-card" data-module-id="module-3">
-            <div class="card-top">
-              <p>Slides 14-18</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-3" />
-                Done
-              </label>
-            </div>
-            <h3>3. Training Math and Optimization</h3>
-            <p>Connect notation, objective functions, and gradient descent updates.</p>
-            <a href="../modules/03_training_math_objective_and_optimization.md"
-              >Open module</a
-            >
-          </article>
-
-          <article class="module-card" data-module-id="module-4">
-            <div class="card-top">
-              <p>Slides 19-29</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-4" />
-                Done
-              </label>
-            </div>
-            <h3>4. Evaluation Metrics</h3>
-            <p>Interpret MAE, RMSE, precision, recall, and F1 for practical decisions.</p>
-            <a href="../modules/04_evaluation_metrics.md">Open module</a>
-          </article>
-
-          <article class="module-card" data-module-id="module-5">
-            <div class="card-top">
-              <p>Slides 30-32</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-5" />
-                Done
-              </label>
-            </div>
-            <h3>5. Data Cleaning and Scaling</h3>
-            <p>Cover missing values, preprocessing choices, and why scaling matters.</p>
-            <a href="../modules/05_data_cleaning_and_scaling.md">Open module</a>
-          </article>
-
-          <article class="module-card" data-module-id="module-6">
-            <div class="card-top">
-              <p>Slides 33-35</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-6" />
-                Done
-              </label>
-            </div>
-            <h3>6. Workflow and Model Validation</h3>
-            <p>Reinforce split strategy, overfitting detection, and repeatable ML workflow.</p>
-            <a href="../modules/06_workflow_and_model_validation.md">Open module</a>
-          </article>
-
-          <article class="module-card" data-module-id="module-7">
-            <div class="card-top">
-              <p>Slides 36-39</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-7" />
-                Done
-              </label>
-            </div>
-            <h3>7. Broader AI Concepts</h3>
-            <p>Bridge foundations into CV, NLP, recommender systems, and generative AI.</p>
-            <a href="../modules/07_broader_ai_concepts.md">Open module</a>
-          </article>
-
-          <article class="module-card" data-module-id="module-8">
-            <div class="card-top">
-              <p>Slides 40-42</p>
-              <label>
-                <input type="checkbox" class="progress-toggle" data-key="module-8" />
-                Done
-              </label>
-            </div>
-            <h3>8. Practical Notebook Roadmap</h3>
-            <p>Prepare learners for independent challenge work and valid submission flow.</p>
-            <a href="../modules/08_practical_notebook_roadmap.md">Open module</a>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel reveal">
-        <div class="section-head">
-          <h2>Practical Lab Run Order</h2>
-          <p>Use these in sequence from a clean kernel.</p>
-        </div>
-        <ol class="lab-list">
+      <section id="module-1" class="panel">
+        <h2>Module 1: Foundations (Slides 1-7)</h2>
+        <h3>What To Teach</h3>
+        <ul>
           <li>
-            <div>
-              <h3>01 Intro Bike Demand Regression</h3>
-              <p>Expected time: 60-90 min</p>
-            </div>
+            Why ML: traditional programming is <code>Rules + Data -> Answers</code>,
+            while ML is <code>Data + Answers -> Rules</code>.
+          </li>
+          <li>Set relationship: AI includes ML, and ML includes Deep Learning.</li>
+          <li>Three ML types depend on feedback available to the model.</li>
+        </ul>
+        <h3>Types Of ML</h3>
+        <ul>
+          <li>Supervised: data with labels, example: predict house price.</li>
+          <li>Unsupervised: data without labels, example: group customers.</li>
+          <li>Reinforcement learning: reward signals, example: game-playing agent.</li>
+        </ul>
+        <h3>Core Formula</h3>
+        <p><code>Maximize cumulative reward: sum_t R_t</code></p>
+      </section>
+
+      <section id="module-2" class="panel">
+        <h2>Module 2: Supervised Learning (Slides 8-13)</h2>
+        <h3>Regression</h3>
+        <ul>
+          <li>Predicts continuous numeric values: price, temperature, demand.</li>
+          <li>Notation: <code>y_hat = f(x)</code></li>
+          <li>Simple linear model: <code>y_hat = w x + b</code></li>
+          <li>Error per sample: <code>error_i = y_i - y_hat_i</code></li>
+        </ul>
+        <h3>Classification</h3>
+        <ul>
+          <li>Predicts categories (spam/not spam, fraud/not fraud).</li>
+          <li>
+            Binary output: <code>y_hat in {0,1}</code>, multiclass:
+            <code>y_hat in {1,...,K}</code>.
+          </li>
+          <li>Probability framing: <code>P(y = 1 | x)</code>.</li>
+          <li>
+            Threshold decision example: if <code>P(y=1|x) >= 0.5</code>, classify as
+            positive.
+          </li>
+        </ul>
+      </section>
+
+      <section id="module-3" class="panel">
+        <h2>Module 3: Training Math (Slides 14-18)</h2>
+        <h3>Notation And Structure</h3>
+        <ul>
+          <li>Dataset: <code>D = {(x_1, y_1), ..., (x_n, y_n)}</code></li>
+          <li>Matrix view: <code>X in R^(n x d), y in R^n</code></li>
+          <li>Prediction function: <code>y_hat = f_theta(x)</code></li>
+        </ul>
+        <h3>Loss And Objective</h3>
+        <ul>
+          <li>Loss compares prediction to truth: <code>L(y, y_hat)</code>.</li>
+          <li>
+            Training objective (empirical risk):
+            <code>J(theta) = (1/n) * sum_i L(y_i, f_theta(x_i))</code>.
+          </li>
+        </ul>
+        <h3>Gradient Descent Intuition</h3>
+        <p><code>theta := theta - alpha * grad_theta J(theta)</code></p>
+        <ul>
+          <li><code>alpha</code> too small: learning is slow.</li>
+          <li><code>alpha</code> too large: training can be unstable.</li>
+        </ul>
+      </section>
+
+      <section id="module-4" class="panel">
+        <h2>Module 4: Evaluation Metrics (Slides 19-29)</h2>
+        <h3>Regression Metrics</h3>
+        <ul>
+          <li><code>MAE = (1/n) * sum |y_i - y_hat_i|</code> (easy to explain)</li>
+          <li><code>MSE = (1/n) * sum (y_i - y_hat_i)^2</code> (penalizes large errors)</li>
+          <li><code>RMSE = sqrt(MSE)</code> (returns to original units)</li>
+          <li><code>R^2</code> measures explained variance</li>
+        </ul>
+        <h3>Classification Metrics</h3>
+        <p>Confusion matrix terms: <code>TP, TN, FP, FN</code></p>
+        <ul>
+          <li><code>Accuracy = (TP + TN) / (TP + TN + FP + FN)</code></li>
+          <li><code>Precision = TP / (TP + FP)</code></li>
+          <li><code>Recall = TP / (TP + FN)</code></li>
+          <li><code>F1 = 2 * (Precision * Recall) / (Precision + Recall)</code></li>
+        </ul>
+        <h3>Teaching Emphasis</h3>
+        <ul>
+          <li>False positives costly -> emphasize precision.</li>
+          <li>False negatives costly -> emphasize recall.</li>
+          <li>Accuracy alone can mislead on imbalanced datasets.</li>
+        </ul>
+      </section>
+
+      <section id="module-5" class="panel">
+        <h2>Module 5: Data Cleaning and Scaling (Slides 30-32)</h2>
+        <h3>Why It Matters</h3>
+        <p><code>Poor data -> poor model</code></p>
+        <ul>
+          <li>Check missing values, outliers, duplicates, wrong data types.</li>
+          <li>Prepare categorical variables correctly before modeling.</li>
+        </ul>
+        <h3>Missing Values</h3>
+        <ul>
+          <li>Drop rows/columns where appropriate.</li>
+          <li>Impute with mean, median, mode, or context-aware strategy.</li>
+          <li>Avoid data leakage from test set into preprocessing decisions.</li>
+        </ul>
+        <h3>Scaling Formulas</h3>
+        <ul>
+          <li>Standardization: <code>z = (x - mu) / sigma</code></li>
+          <li>
+            Normalization:
+            <code>x' = (x - x_min) / (x_max - x_min)</code>
+          </li>
+        </ul>
+      </section>
+
+      <section id="module-6" class="panel">
+        <h2>Module 6: Workflow and Validation (Slides 33-35)</h2>
+        <h3>End-To-End Workflow</h3>
+        <p><code>Data -> Clean -> Split -> Train -> Evaluate -> Improve</code></p>
+        <h3>Data Splits</h3>
+        <ul>
+          <li>Train set: learn parameters.</li>
+          <li>Validation set: compare/tune model choices.</li>
+          <li>Test set: final unbiased evaluation.</li>
+        </ul>
+        <h3>Generalization Patterns</h3>
+        <ul>
+          <li>Underfitting: poor train and poor test performance.</li>
+          <li>Good fit: strong train and strong test performance.</li>
+          <li>Overfitting: strong train but weak test performance.</li>
+          <li>Rule: do not repeatedly tune on the test set.</li>
+        </ul>
+      </section>
+
+      <section id="module-7" class="panel">
+        <h2>Module 7: Broader AI Concepts (Slides 36-39)</h2>
+        <h3>Computer Vision</h3>
+        <ul>
+          <li>Image classification, object detection, segmentation.</li>
+          <li>Examples: crop disease detection, traffic analytics.</li>
+        </ul>
+        <h3>Natural Language Processing</h3>
+        <ul>
+          <li>Text classification, translation, summarization, chatbots.</li>
+          <li>Examples: customer feedback classification, report summaries.</li>
+        </ul>
+        <h3>Recommendation Systems</h3>
+        <p><code>User behavior + Item information -> Recommendation</code></p>
+        <h3>Generative AI</h3>
+        <ul>
+          <li>Generates new text, images, code, audio, and video.</li>
+          <li>Difference: predictive ML predicts labels/values; generative AI creates samples.</li>
+        </ul>
+      </section>
+
+      <section id="module-8" class="panel">
+        <h2>Module 8: Practical Roadmap (Slides 40-42)</h2>
+        <h3>Notebook Session Flow</h3>
+        <ul>
+          <li>Load dataset and inspect data quality.</li>
+          <li>Clean missing values and encode categorical variables.</li>
+          <li>Split data, train model, evaluate metrics.</li>
+          <li>Interpret model behavior and error patterns.</li>
+        </ul>
+        <h3>Exercise Style</h3>
+        <ul>
+          <li>Guided cells with missing parts for students to complete.</li>
+          <li>Validation cells check correctness.</li>
+          <li>Reasoning is required, not just passing checks.</li>
+        </ul>
+        <h3>Key Takeaways For Students</h3>
+        <ul>
+          <li>ML learns patterns from data and needs clean inputs.</li>
+          <li>Task type determines model type and metric selection.</li>
+          <li>Evaluation on unseen data is non-negotiable.</li>
+        </ul>
+      </section>
+
+      <section id="notebooks" class="panel notebooks">
+        <h2>Notebook Links (Run In This Order)</h2>
+        <ol>
+          <li>
+            <strong>01 Intro Bike Demand Regression</strong> (60-90 min)
             <a href="../notebooks/01_intro_bike_demand_regression_instructor.ipynb"
               >Open notebook</a
             >
           </li>
           <li>
-            <div>
-              <h3>02 Bike Demand Advanced Extension</h3>
-              <p>Expected time: 45-75 min</p>
-            </div>
+            <strong>02 Bike Demand Advanced Extension</strong> (45-75 min)
             <a href="../notebooks/02_bike_demand_regression_advanced_extension.ipynb"
               >Open notebook</a
             >
           </li>
           <li>
-            <div>
-              <h3>03 Challenge: Bank Marketing Classification</h3>
-              <p>Expected time: 60-90 min</p>
-            </div>
+            <strong>03 Challenge Bank Marketing Classification</strong> (60-90 min)
             <a href="../notebooks/03_challenge_bank_marketing_classification.ipynb"
               >Open notebook</a
             >
           </li>
         </ol>
-      </section>
-
-      <section class="split reveal">
-        <article class="panel">
-          <h2>Competition Rules Snapshot</h2>
-          <ul>
-            <li>Submission format: <code>id,y_prob</code></li>
-            <li>Primary ranking metric: PR-AUC</li>
-            <li>Tie-breakers: F1 (0.50), then lower log loss</li>
-          </ul>
-          <div class="link-row">
-            <a href="../templates/submission_template.csv">Submission template</a>
-            <a href="../competition/README.md">Competition details</a>
-          </div>
-        </article>
-        <article class="panel">
-          <h2>Instructor Utilities</h2>
-          <ul>
-            <li>Private labels stay outside public release branch.</li>
-            <li>Use notebook run contract for reproducibility.</li>
-            <li>Use release phases for workshop vs post-workshop materials.</li>
-          </ul>
-          <div class="link-row">
-            <a href="../docs/release_workflow.md">Release workflow</a>
-            <a href="../competition/competition_score_bank_marketing.py">Scoring script</a>
-          </div>
-        </article>
+        <p>Submission format for challenge notebook: <code>id,y_prob</code>.</p>
       </section>
     </main>
-
-    <footer class="site-footer reveal">
-      <p id="lastUpdated"></p>
-      <p>Built for live tutoring and cohort delivery.</p>
-    </footer>
   </body>
 </html>
