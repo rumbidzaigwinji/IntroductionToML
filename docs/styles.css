@@ -141,6 +141,10 @@ h1 {
   margin-bottom: 0.35rem;
 }
 
+.hero-card a {
+  word-break: break-word;
+}
+
 .toc {
   position: sticky;
   top: 0;
@@ -175,6 +179,35 @@ main {
   border-radius: 16px;
   background: var(--panel);
   padding: 1.08rem;
+}
+
+.fun-panel {
+  background: linear-gradient(180deg, #fffaf2 0%, #fffdf8 100%);
+}
+
+.fun-grid {
+  margin-top: 0.65rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.fun-card {
+  border: 1px dashed #d6c59d;
+  border-radius: 12px;
+  background: #fff7e8;
+  padding: 0.8rem;
+}
+
+.concept-check {
+  margin-top: 0.8rem;
+}
+
+.fun-text {
+  margin-top: 0.55rem;
+  color: #2e4058;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-size: 0.94rem;
 }
 
 h2 {
