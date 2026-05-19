@@ -588,11 +588,36 @@
         <h3>Recommended Local Setup</h3>
         <pre><code>pip install -r requirements.txt
 jupyter notebook</code></pre>
+        <p>
+          Download dependencies file first, then run install in your local terminal.
+        </p>
+        <div class="actions">
+          <button
+            type="button"
+            class="btn"
+            data-download-file="../requirements.txt"
+            data-download-name="requirements.txt"
+          >
+            Download requirements.txt
+          </button>
+          <a
+            class="fallback-link"
+            href="../requirements.txt"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Fallback open link</a
+          >
+        </div>
 
         <h3>Download Files</h3>
         <ol class="notebook-list">
           <li>
             <strong>Intro Bike Demand Regression</strong>
+            <p class="notebook-desc">
+              Beginner regression lab: load and inspect a bike demand dataset, do
+              foundational preprocessing, train a first regression model, and read MAE
+              and RMSE correctly.
+            </p>
             <div class="actions">
               <button
                 type="button"
@@ -613,6 +638,11 @@ jupyter notebook</code></pre>
           </li>
           <li>
             <strong>Bike Demand Advanced Extension</strong>
+            <p class="notebook-desc">
+              Intermediate extension: improve the baseline with stronger feature
+              preparation and model comparison, then evaluate how changes affect
+              generalization performance.
+            </p>
             <div class="actions">
               <button
                 type="button"
@@ -633,6 +663,14 @@ jupyter notebook</code></pre>
           </li>
           <li>
             <strong>Challenge Bank Marketing Classification</strong>
+            <p class="notebook-desc">
+              Classification challenge: build a pipeline that predicts class
+              probabilities for leaderboard scoring, then export predictions in the
+              required submission format.
+            </p>
+            <p class="prize-note">
+              Cash prizes are awarded to the top 3 winners on the leaderboard.
+            </p>
             <div class="actions">
               <button
                 type="button"
