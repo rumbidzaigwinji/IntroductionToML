@@ -12,6 +12,15 @@ This repository contains the full course stack:
 - Slides: [`slides/IndabaX_Zimbabwe_Intro_to_ML.pptx`](./slides/IndabaX_Zimbabwe_Intro_to_ML.pptx)
 - Curriculum notes (mapped to slides): [`modules/README.md`](./modules/README.md)
 - Notebook track: [`notebooks/README.md`](./notebooks/README.md)
+- Tutoring website hub: [`docs/index.html`](./docs/index.html)
+
+### 1.1) Open the tutoring website
+From repo root:
+```bash
+python -m http.server 8000
+```
+Then open:
+`http://localhost:8000/docs/`
 
 ### 2) Prerequisites
 - Python 3.10+

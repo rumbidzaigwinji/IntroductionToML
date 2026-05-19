@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter artifacts
+.ipynb_checkpoints/
+
+# Local data cache
+data/*.csv
+
+# Instructor-private assets
+.instructor/
+.instructor/*.json
+.instructor/private_labels*.csv
+.instructor/*leaderboard*.csv
+
+# Temporary scoring folders
+submissions/
+leaderboard*.csv
+
+# Legacy root-level duplicates (canonical copies live in folders)
+/01_guided_bike_demand_regression_instructor.ipynb
+/01_intro_bike_demand_regression_instructor.ipynb
+/02_bike_demand_regression_advanced_extension.ipynb
+/02_challenge_bank_marketing_classification.ipynb
+/03_reference_solutions.ipynb
+/competition_score_bank_marketing.py

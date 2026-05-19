@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IndabaX Zimbabwe | Intro to ML Course Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=Syne:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+    <header class="site-header reveal">
+      <p class="eyebrow">Deep Learning IndabaX Zimbabwe</p>
+      <h1>Intro to ML Teaching Hub</h1>
+      <p class="subhead">
+        A single place to run your tutoring sessions: slide flow, module sequence,
+        practical labs, and competition assets.
+      </p>
+      <div class="header-actions">
+        <a class="button button-primary" href="../slides/IndabaX_Zimbabwe_Intro_to_ML.pptx"
+          >Open Slides</a
+        >
+        <a class="button" href="../modules/README.md">Open Module Notes</a>
+        <a class="button" href="../notebooks/README.md">Open Notebook Track</a>
+      </div>
+      <dl class="stat-grid">
+        <div>
+          <dt>Modules</dt>
+          <dd>8</dd>
+        </div>
+        <div>
+          <dt>Notebooks</dt>
+          <dd>3</dd>
+        </div>
+        <div>
+          <dt>Slides</dt>
+          <dd>42</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main>
+      <section class="panel reveal">
+        <div class="panel-head">
+          <h2>Session Control</h2>
+          <button id="resetProgress" class="button button-ghost" type="button">
+            Reset Progress
+          </button>
+        </div>
+        <p>
+          Tick each module as you teach. Progress is saved in your browser for the
+          next tutoring session.
+        </p>
+        <div class="progress-wrap" role="presentation">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <p id="progressText" class="muted">0 of 8 modules complete</p>
+      </section>
+
+      <section class="reveal">
+        <div class="section-head">
+          <h2>Module Roadmap</h2>
+          <p>Mapped directly to your 42-slide deck.</p>
+        </div>
+        <div class="card-grid">
+          <article class="module-card" data-module-id="module-1">
+            <div class="card-top">
+              <p>Slides 1-7</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-1" />
+                Done
+              </label>
+            </div>
+            <h3>1. Foundations: AI, ML, DL, and ML Types</h3>
+            <p>Distinguish AI, ML, and DL and classify tasks by learning type.</p>
+            <a href="../modules/01_foundations_ai_ml_dl_and_ml_types.md">Open module</a>
+          </article>
+
+          <article class="module-card" data-module-id="module-2">
+            <div class="card-top">
+              <p>Slides 8-13</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-2" />
+                Done
+              </label>
+            </div>
+            <h3>2. Supervised Learning: Regression vs Classification</h3>
+            <p>Teach output types, probability intuition, and binary vs multiclass framing.</p>
+            <a href="../modules/02_supervised_learning_regression_vs_classification.md"
+              >Open module</a
+            >
+          </article>
+
+          <article class="module-card" data-module-id="module-3">
+            <div class="card-top">
+              <p>Slides 14-18</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-3" />
+                Done
+              </label>
+            </div>
+            <h3>3. Training Math and Optimization</h3>
+            <p>Connect notation, objective functions, and gradient descent updates.</p>
+            <a href="../modules/03_training_math_objective_and_optimization.md"
+              >Open module</a
+            >
+          </article>
+
+          <article class="module-card" data-module-id="module-4">
+            <div class="card-top">
+              <p>Slides 19-29</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-4" />
+                Done
+              </label>
+            </div>
+            <h3>4. Evaluation Metrics</h3>
+            <p>Interpret MAE, RMSE, precision, recall, and F1 for practical decisions.</p>
+            <a href="../modules/04_evaluation_metrics.md">Open module</a>
+          </article>
+
+          <article class="module-card" data-module-id="module-5">
+            <div class="card-top">
+              <p>Slides 30-32</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-5" />
+                Done
+              </label>
+            </div>
+            <h3>5. Data Cleaning and Scaling</h3>
+            <p>Cover missing values, preprocessing choices, and why scaling matters.</p>
+            <a href="../modules/05_data_cleaning_and_scaling.md">Open module</a>
+          </article>
+
+          <article class="module-card" data-module-id="module-6">
+            <div class="card-top">
+              <p>Slides 33-35</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-6" />
+                Done
+              </label>
+            </div>
+            <h3>6. Workflow and Model Validation</h3>
+            <p>Reinforce split strategy, overfitting detection, and repeatable ML workflow.</p>
+            <a href="../modules/06_workflow_and_model_validation.md">Open module</a>
+          </article>
+
+          <article class="module-card" data-module-id="module-7">
+            <div class="card-top">
+              <p>Slides 36-39</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-7" />
+                Done
+              </label>
+            </div>
+            <h3>7. Broader AI Concepts</h3>
+            <p>Bridge foundations into CV, NLP, recommender systems, and generative AI.</p>
+            <a href="../modules/07_broader_ai_concepts.md">Open module</a>
+          </article>
+
+          <article class="module-card" data-module-id="module-8">
+            <div class="card-top">
+              <p>Slides 40-42</p>
+              <label>
+                <input type="checkbox" class="progress-toggle" data-key="module-8" />
+                Done
+              </label>
+            </div>
+            <h3>8. Practical Notebook Roadmap</h3>
+            <p>Prepare learners for independent challenge work and valid submission flow.</p>
+            <a href="../modules/08_practical_notebook_roadmap.md">Open module</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel reveal">
+        <div class="section-head">
+          <h2>Practical Lab Run Order</h2>
+          <p>Use these in sequence from a clean kernel.</p>
+        </div>
+        <ol class="lab-list">
+          <li>
+            <div>
+              <h3>01 Intro Bike Demand Regression</h3>
+              <p>Expected time: 60-90 min</p>
+            </div>
+            <a href="../notebooks/01_intro_bike_demand_regression_instructor.ipynb"
+              >Open notebook</a
+            >
+          </li>
+          <li>
+            <div>
+              <h3>02 Bike Demand Advanced Extension</h3>
+              <p>Expected time: 45-75 min</p>
+            </div>
+            <a href="../notebooks/02_bike_demand_regression_advanced_extension.ipynb"
+              >Open notebook</a
+            >
+          </li>
+          <li>
+            <div>
+              <h3>03 Challenge: Bank Marketing Classification</h3>
+              <p>Expected time: 60-90 min</p>
+            </div>
+            <a href="../notebooks/03_challenge_bank_marketing_classification.ipynb"
+              >Open notebook</a
+            >
+          </li>
+        </ol>
+      </section>
+
+      <section class="split reveal">
+        <article class="panel">
+          <h2>Competition Rules Snapshot</h2>
+          <ul>
+            <li>Submission format: <code>id,y_prob</code></li>
+            <li>Primary ranking metric: PR-AUC</li>
+            <li>Tie-breakers: F1 (0.50), then lower log loss</li>
+          </ul>
+          <div class="link-row">
+            <a href="../templates/submission_template.csv">Submission template</a>
+            <a href="../competition/README.md">Competition details</a>
+          </div>
+        </article>
+        <article class="panel">
+          <h2>Instructor Utilities</h2>
+          <ul>
+            <li>Private labels stay outside public release branch.</li>
+            <li>Use notebook run contract for reproducibility.</li>
+            <li>Use release phases for workshop vs post-workshop materials.</li>
+          </ul>
+          <div class="link-row">
+            <a href="../docs/release_workflow.md">Release workflow</a>
+            <a href="../competition/competition_score_bank_marketing.py">Scoring script</a>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer reveal">
+      <p id="lastUpdated"></p>
+      <p>Built for live tutoring and cohort delivery.</p>
+    </footer>
+  </body>
+</html>
