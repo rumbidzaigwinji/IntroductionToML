@@ -123,15 +123,27 @@
           complex to hand-code.
         </p>
         <div class="formula">\[ \text{Rules + Data} \rightarrow \text{Answers} \]</div>
+        <p class="formula-note">
+          Meaning: in normal programming, humans write explicit rules, then the
+          computer uses those rules on data to produce answers.
+        </p>
         <p>Machine learning inverts this process by learning patterns from examples.</p>
         <div class="formula">
           \[
           \text{Data + Correct Answers} \rightarrow \text{Learned Rules (Model)}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: in ML, we feed example inputs and their true outputs, and the
+          algorithm learns the rules automatically.
+        </p>
 
         <h3>AI, Machine Learning, and Deep Learning</h3>
         <div class="formula">\[ \text{AI} \supset \text{ML} \supset \text{DL} \]</div>
+        <p class="formula-note">
+          Meaning: deep learning is one part of machine learning, and machine learning
+          is one part of AI.
+        </p>
         <ul>
           <li>Artificial Intelligence is the broad field of intelligent systems.</li>
           <li>Machine Learning is a subset where systems learn from data.</li>
@@ -172,7 +184,15 @@
           (x_i, y_i), \quad x_i=\text{features}, \quad y_i=\text{target label}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: each training row has input values (\(x_i\)) and the correct answer
+          (\(y_i\)).
+        </p>
         <div class="formula">\[ f(x_i) \approx y_i \]</div>
+        <p class="formula-note">
+          Meaning: the model function \(f\) should produce predictions close to the
+          true label.
+        </p>
         <p>
           Students should understand that the model learns a mapping from input
           features to expected output labels.
@@ -180,6 +200,9 @@
 
         <h3>Unsupervised Learning Setup</h3>
         <div class="formula">\[ x_1, x_2, x_3, \ldots, x_n \]</div>
+        <p class="formula-note">
+          Meaning: in unsupervised learning we only have inputs, no target labels.
+        </p>
         <p>
           No labels are provided. The objective is to discover structure, clusters,
           latent groups, or unusual samples.
@@ -196,7 +219,13 @@
           \text{State} \rightarrow \text{Action} \rightarrow \text{Reward}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: the agent sees a situation, takes an action, then receives feedback.
+        </p>
         <div class="formula">\[ \text{Objective: maximize } \sum_t R_t \]</div>
+        <p class="formula-note">
+          Meaning: the goal is to maximize total reward over time, not just immediate reward.
+        </p>
         <p>
           The agent learns by interacting with an environment and improving behavior
           through cumulative reward.
@@ -209,10 +238,16 @@
         <h3>Regression</h3>
         <p>Regression predicts a continuous numeric value.</p>
         <div class="formula">\[ \hat{y} = f(x) \]</div>
+        <p class="formula-note">
+          Meaning: prediction (\(\hat{y}\)) is produced by applying model \(f\) to input \(x\).
+        </p>
         <p>Common examples: house price, temperature, crop yield, sales demand.</p>
 
         <h3>Simple Linear Regression</h3>
         <div class="formula">\[ \hat{y} = wx + b \]</div>
+        <p class="formula-note">
+          Meaning: linear regression predicts using a weighted feature plus a bias offset.
+        </p>
         <ul>
           <li>\(w\): slope/weight controlling sensitivity to \(x\)</li>
           <li>\(b\): intercept/bias shifting predictions</li>
@@ -222,6 +257,9 @@
 
         <h3>Prediction Error</h3>
         <div class="formula">\[ \text{error}_i = y_i - \hat{y}_i \]</div>
+        <p class="formula-note">
+          Meaning: this is how far one prediction is from the truth for sample \(i\).
+        </p>
         <p>
           Training algorithms seek parameters that reduce these errors across all
           training examples.
@@ -230,6 +268,9 @@
         <h3>Classification</h3>
         <p>Classification predicts category labels instead of continuous values.</p>
         <div class="formula">\[ \hat{y} \in \{0,1\} \quad \text{or} \quad \hat{y} \in \{1,\dots,K\} \]</div>
+        <p class="formula-note">
+          Meaning: classification outputs belong to a fixed set of labels.
+        </p>
         <ul>
           <li>Binary classification: fraud/not fraud, spam/not spam.</li>
           <li>Multiclass classification: species type, disease type, digit class.</li>
@@ -237,12 +278,19 @@
 
         <h3>Probability View of Classification</h3>
         <div class="formula">\[ P(y=1 \mid x) \]</div>
+        <p class="formula-note">
+          Meaning: probability that the class is positive, given the input features.
+        </p>
         <p>The model outputs probability, then thresholding converts it to a class.</p>
         <div class="formula">
           \[
           \hat{y}=1 \quad \text{if} \quad P(y=1 \mid x) \ge \tau
           \]
         </div>
+        <p class="formula-note">
+          Meaning: if probability is above threshold \(\tau\), predict class 1;
+          otherwise predict class 0.
+        </p>
         <p>
           Threshold \(\tau\) should be chosen based on business cost trade-offs, not
           arbitrary defaults.
@@ -258,7 +306,13 @@
           D=\{(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: \(D\) is the full training dataset made of input-output pairs.
+        </p>
         <div class="formula">\[ X \in \mathbb{R}^{n \times d}, \quad y \in \mathbb{R}^{n} \]</div>
+        <p class="formula-note">
+          Meaning: \(X\) is a table with \(n\) rows and \(d\) features, and \(y\) is one target per row.
+        </p>
         <p>
           Here \(n\) is number of examples, \(d\) is number of features, \(X\) is
           the feature matrix, and \(y\) is the target vector.
@@ -266,18 +320,27 @@
 
         <h3>Prediction Function and Parameters</h3>
         <div class="formula">\[ \hat{y}=f_{\theta}(x) \]</div>
+        <p class="formula-note">
+          Meaning: model parameters \(\theta\) control how input is turned into predictions.
+        </p>
         <p>
           \(\theta\) contains learnable parameters. Training is parameter estimation.
         </p>
 
         <h3>Loss Function</h3>
         <div class="formula">\[ L(y,\hat{y}) \]</div>
+        <p class="formula-note">
+          Meaning: loss function returns a number showing how wrong one prediction is.
+        </p>
         <p>
           A loss function quantifies error for each example. Lower loss means better
           fit to observed labels.
         </p>
         <p>Example for regression:</p>
         <div class="formula">\[ L(y,\hat{y})=(y-\hat{y})^2 \]</div>
+        <p class="formula-note">
+          Meaning: squaring makes large mistakes count much more than small mistakes.
+        </p>
 
         <h3>Training Objective (Empirical Risk)</h3>
         <div class="formula">
@@ -285,12 +348,18 @@
           J(\theta)=\frac{1}{n}\sum_{i=1}^{n}L\left(y_i,f_{\theta}(x_i)\right)
           \]
         </div>
+        <p class="formula-note">
+          Meaning: \(J(\theta)\) is average training error across all examples.
+        </p>
         <p>
           The model is trained by finding parameter values that minimize average loss.
         </p>
 
         <h3>Gradient Descent Update</h3>
         <div class="formula">\[ \theta \leftarrow \theta - \alpha \nabla_{\theta}J(\theta) \]</div>
+        <p class="formula-note">
+          Meaning: update parameters by moving in the direction that reduces error.
+        </p>
         <ul>
           <li>\(\alpha\): learning rate (step size)</li>
           <li>\(\nabla_{\theta}J(\theta)\): gradient of objective</li>
@@ -312,8 +381,17 @@
 
         <h3>Regression Metrics</h3>
         <div class="formula">\[ \text{MAE}=\frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i| \]</div>
+        <p class="formula-note">
+          Meaning: average absolute distance between true and predicted values.
+        </p>
         <div class="formula">\[ \text{MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2 \]</div>
+        <p class="formula-note">
+          Meaning: average squared error; very large errors are penalized heavily.
+        </p>
         <div class="formula">\[ \text{RMSE}=\sqrt{\text{MSE}} \]</div>
+        <p class="formula-note">
+          Meaning: square root returns the metric to original target units.
+        </p>
         <ul>
           <li>MAE is easy to interpret in original units.</li>
           <li>MSE penalizes large errors strongly.</li>
@@ -345,13 +423,25 @@
 
         <h3>Classification Metrics</h3>
         <div class="formula">\[ \text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN} \]</div>
+        <p class="formula-note">
+          Meaning: percentage of all predictions that are correct.
+        </p>
         <div class="formula">\[ \text{Precision}=\frac{TP}{TP+FP} \]</div>
+        <p class="formula-note">
+          Meaning: when model predicts positive, precision tells how often it is right.
+        </p>
         <div class="formula">\[ \text{Recall}=\frac{TP}{TP+FN} \]</div>
+        <p class="formula-note">
+          Meaning: of all real positives, recall tells how many were found.
+        </p>
         <div class="formula">
           \[
           F_1=2\cdot\frac{\text{Precision}\cdot\text{Recall}}{\text{Precision}+\text{Recall}}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: F1 balances precision and recall into one score.
+        </p>
         <p>
           Accuracy can be misleading in imbalanced datasets. Precision and recall
           should be chosen according to cost of false positives versus false negatives.
@@ -367,6 +457,9 @@
           dtypes, outliers, and inconsistent feature scales degrade model reliability.
         </p>
         <div class="formula">\[ \text{Poor data} \rightarrow \text{Poor model} \]</div>
+        <p class="formula-note">
+          Meaning: cleaning and preprocessing quality directly affects model quality.
+        </p>
 
         <h3>Handling Missing Values</h3>
         <ul>
@@ -378,7 +471,13 @@
 
         <h3>Scaling Methods</h3>
         <div class="formula">\[ z=\frac{x-\mu}{\sigma} \]</div>
+        <p class="formula-note">
+          Meaning: standardization centers feature values around zero with unit variance.
+        </p>
         <div class="formula">\[ x'=\frac{x-x_{\min}}{x_{\max}-x_{\min}} \]</div>
+        <p class="formula-note">
+          Meaning: min-max normalization rescales values into a 0 to 1 range.
+        </p>
         <p>
           Scaling is especially important for distance-based and gradient-based methods
           such as KNN, K-Means, Logistic Regression, and Neural Networks.
@@ -393,6 +492,9 @@
           \text{Data} \rightarrow \text{Clean} \rightarrow \text{Split} \rightarrow \text{Train} \rightarrow \text{Evaluate} \rightarrow \text{Improve}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: ML is an iterative process, not a single train step.
+        </p>
 
         <h3>Split Roles</h3>
         <ul>
@@ -431,6 +533,9 @@
           \text{User behavior + Item information} \rightarrow \text{Recommendation}
           \]
         </div>
+        <p class="formula-note">
+          Meaning: recommendations combine who the user is and what each item represents.
+        </p>
         <ul>
           <li>Use cases: movies, products, music, news feed ranking.</li>
         </ul>

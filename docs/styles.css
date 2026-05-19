@@ -206,6 +206,14 @@ li {
   overflow-x: auto;
 }
 
+.formula-note {
+  margin-top: -0.15rem;
+  margin-bottom: 0.65rem;
+  color: #2f3f53;
+  font-size: 0.95rem;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
 .notebook-list li {
   margin-bottom: 0.8rem;
 }
