@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to Machine Learning | Teaching Website</title>
+    <title>Introduction to Machine Learning | Course Teaching Site</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,487 +26,545 @@
       defer
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
+    <script defer>
+      async function forceNotebookDownload(filePath, fileName) {
+        const status = document.getElementById("download-status");
+        try {
+          if (status) {
+            status.textContent = `Preparing download: ${fileName}`;
+          }
+
+          const response = await fetch(filePath, { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error("Download request failed.");
+          }
+
+          const blob = await response.blob();
+          const blobUrl = URL.createObjectURL(blob);
+
+          const anchor = document.createElement("a");
+          anchor.href = blobUrl;
+          anchor.download = fileName;
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+
+          URL.revokeObjectURL(blobUrl);
+          if (status) {
+            status.textContent = `Downloaded: ${fileName}`;
+          }
+        } catch (error) {
+          if (status) {
+            status.textContent =
+              "Download failed in browser. Use the fallback link next to the button.";
+          }
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll("[data-download-file]");
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const file = button.getAttribute("data-download-file");
+            const name = button.getAttribute("data-download-name");
+            forceNotebookDownload(file, name);
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <header class="hero">
       <p class="tag">Deep Learning IndabaX Zimbabwe</p>
       <h1>Introduction to Machine Learning</h1>
       <p class="lead">
-        This is a complete teaching page built from your slide flow. Use it directly
-        during class, then let students download the notebooks and open them in their
+        This website contains the full course teaching content. Use it directly while
+        tutoring, then have students download notebooks and open them in their
         preferred IDE.
       </p>
       <div class="hero-grid">
-        <div class="hero-card">
-          <h2>Course Scope</h2>
-          <p>42 slides, 8 modules, 3 practical notebooks, 1 competition challenge.</p>
-        </div>
-        <div class="hero-card">
-          <h2>Teaching Sequence</h2>
+        <article class="hero-card">
+          <h2>Learning Path</h2>
           <p>
-            Foundations -> Supervised Learning -> Training Math -> Evaluation ->
-            Data Cleaning -> Workflow -> Broader AI -> Practical
+            Foundations, supervised learning, training mathematics, evaluation
+            metrics, data cleaning, workflow, broader AI domains, then practical labs.
           </p>
-        </div>
+        </article>
+        <article class="hero-card">
+          <h2>Practical Outcome</h2>
+          <p>
+            Students should build, evaluate, and explain ML models with correct metric
+            usage and clean notebook workflow.
+          </p>
+        </article>
       </div>
     </header>
 
     <nav class="toc" aria-label="Course sections">
-      <a href="#module-1">M1</a>
-      <a href="#module-2">M2</a>
-      <a href="#module-3">M3</a>
-      <a href="#module-4">M4</a>
-      <a href="#module-5">M5</a>
-      <a href="#module-6">M6</a>
-      <a href="#module-7">M7</a>
-      <a href="#module-8">M8</a>
+      <a href="#foundations">Foundations</a>
+      <a href="#supervised">Supervised</a>
+      <a href="#training-math">Training Math</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#cleaning">Data Cleaning</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#broader-ai">Broader AI</a>
+      <a href="#practical">Practical</a>
       <a href="#notebooks">Notebooks</a>
     </nav>
 
     <main>
-      <section class="panel">
-        <h2>How To Use This Page While Teaching</h2>
-        <ol>
-          <li>Teach in module order from top to bottom.</li>
-          <li>Use the formulas exactly as written and connect each to intuition.</li>
-          <li>Pause at each "Classroom prompts" block for student interaction.</li>
-          <li>After Module 8, move to notebook downloads at the bottom of this page.</li>
-        </ol>
+      <section id="foundations" class="panel">
+        <h2>Foundations: Why ML, AI-ML-DL, and Learning Types</h2>
+
+        <h3>Why Machine Learning Exists</h3>
+        <p>
+          Traditional software engineering works best when the rules are explicit and
+          stable. In many real-world tasks, those rules are too numerous or too
+          complex to hand-code.
+        </p>
+        <div class="formula">\[ \text{Rules + Data} \rightarrow \text{Answers} \]</div>
+        <p>Machine learning inverts this process by learning patterns from examples.</p>
+        <div class="formula">
+          \[
+          \text{Data + Correct Answers} \rightarrow \text{Learned Rules (Model)}
+          \]
+        </div>
+
+        <h3>AI, Machine Learning, and Deep Learning</h3>
+        <div class="formula">\[ \text{AI} \supset \text{ML} \supset \text{DL} \]</div>
+        <ul>
+          <li>Artificial Intelligence is the broad field of intelligent systems.</li>
+          <li>Machine Learning is a subset where systems learn from data.</li>
+          <li>Deep Learning is a subset using multi-layer neural networks.</li>
+        </ul>
+
+        <h3>Three Main Types of Learning</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Learning Type</th>
+              <th>What The Model Receives</th>
+              <th>Example Task</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Supervised</td>
+              <td>Inputs with labels</td>
+              <td>Predict house price</td>
+            </tr>
+            <tr>
+              <td>Unsupervised</td>
+              <td>Inputs only, no labels</td>
+              <td>Group customers by behavior</td>
+            </tr>
+            <tr>
+              <td>Reinforcement</td>
+              <td>Rewards and penalties from actions</td>
+              <td>Learn a game-playing policy</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Supervised Learning Setup</h3>
+        <div class="formula">
+          \[
+          (x_i, y_i), \quad x_i=\text{features}, \quad y_i=\text{target label}
+          \]
+        </div>
+        <div class="formula">\[ f(x_i) \approx y_i \]</div>
+        <p>
+          Students should understand that the model learns a mapping from input
+          features to expected output labels.
+        </p>
+
+        <h3>Unsupervised Learning Setup</h3>
+        <div class="formula">\[ x_1, x_2, x_3, \ldots, x_n \]</div>
+        <p>
+          No labels are provided. The objective is to discover structure, clusters,
+          latent groups, or unusual samples.
+        </p>
+        <ul>
+          <li>Clustering algorithms: K-Means, DBSCAN.</li>
+          <li>Dimensionality reduction: PCA.</li>
+          <li>Common applications: segmentation, anomaly detection, pattern discovery.</li>
+        </ul>
+
+        <h3>Reinforcement Learning Setup</h3>
+        <div class="formula">
+          \[
+          \text{State} \rightarrow \text{Action} \rightarrow \text{Reward}
+          \]
+        </div>
+        <div class="formula">\[ \text{Objective: maximize } \sum_t R_t \]</div>
+        <p>
+          The agent learns by interacting with an environment and improving behavior
+          through cumulative reward.
+        </p>
       </section>
 
-      <section id="module-1" class="panel">
-        <h2>Module 1: Foundations (Slides 1-7)</h2>
-        <p class="slide-range">Slides covered: 1, 2, 3, 4, 5, 6, 7</p>
+      <section id="supervised" class="panel">
+        <h2>Supervised Learning: Regression and Classification</h2>
 
-        <h3>Teaching Narrative</h3>
-        <p>
-          Start by reframing computation from static rule-writing to pattern learning.
-          In traditional programming, humans specify every rule. In ML, we provide
-          examples and let the model infer useful decision structure.
-        </p>
-        <p>
-          Then position the hierarchy clearly: AI is the broad umbrella, ML is a
-          subset of AI, and Deep Learning is a subset of ML that uses multi-layer
-          neural networks. This gives students a clean mental map before technical
-          details begin.
-        </p>
+        <h3>Regression</h3>
+        <p>Regression predicts a continuous numeric value.</p>
+        <div class="formula">\[ \hat{y} = f(x) \]</div>
+        <p>Common examples: house price, temperature, crop yield, sales demand.</p>
 
-        <h3>Key Concepts And Formulas</h3>
-        <div class="formula">
-          \[
-          \text{Traditional Programming: Rules + Data } \to \text{ Answers}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{Machine Learning: Data + Answers } \to \text{ Learned Rules (Model)}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{AI} \supset \text{ML} \supset \text{DL}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{RL objective: maximize } \sum_{t} R_t
-          \]
-        </div>
-
-        <h3>Slide Cues</h3>
+        <h3>Simple Linear Regression</h3>
+        <div class="formula">\[ \hat{y} = wx + b \]</div>
         <ul>
-          <li>Slide 2: emphasize why manual rule design fails for complex patterns.</li>
-          <li>Slide 3: define AI, ML, DL with one concrete example each.</li>
-          <li>Slide 4: compare supervised vs unsupervised vs reinforcement learning.</li>
-          <li>Slide 5: explain supervised samples as paired inputs and labels.</li>
-          <li>Slide 6: unsupervised learning discovers structure without labels.</li>
-          <li>Slide 7: in RL, actions are learned through rewards and penalties.</li>
+          <li>\(w\): slope/weight controlling sensitivity to \(x\)</li>
+          <li>\(b\): intercept/bias shifting predictions</li>
+          <li>\(x\): feature input</li>
+          <li>\(\hat{y}\): predicted output</li>
         </ul>
 
-        <h3>Classroom Prompts</h3>
+        <h3>Prediction Error</h3>
+        <div class="formula">\[ \text{error}_i = y_i - \hat{y}_i \]</div>
+        <p>
+          Training algorithms seek parameters that reduce these errors across all
+          training examples.
+        </p>
+
+        <h3>Classification</h3>
+        <p>Classification predicts category labels instead of continuous values.</p>
+        <div class="formula">\[ \hat{y} \in \{0,1\} \quad \text{or} \quad \hat{y} \in \{1,\dots,K\} \]</div>
         <ul>
-          <li>Ask: "Is customer segmentation supervised or unsupervised? Why?"</li>
-          <li>Ask: "What feedback signal exists in reinforcement learning?"</li>
+          <li>Binary classification: fraud/not fraud, spam/not spam.</li>
+          <li>Multiclass classification: species type, disease type, digit class.</li>
         </ul>
+
+        <h3>Probability View of Classification</h3>
+        <div class="formula">\[ P(y=1 \mid x) \]</div>
+        <p>The model outputs probability, then thresholding converts it to a class.</p>
+        <div class="formula">
+          \[
+          \hat{y}=1 \quad \text{if} \quad P(y=1 \mid x) \ge \tau
+          \]
+        </div>
+        <p>
+          Threshold \(\tau\) should be chosen based on business cost trade-offs, not
+          arbitrary defaults.
+        </p>
       </section>
 
-      <section id="module-2" class="panel">
-        <h2>Module 2: Supervised Learning (Slides 8-13)</h2>
-        <p class="slide-range">Slides covered: 8, 9, 10, 11, 12, 13</p>
+      <section id="training-math" class="panel">
+        <h2>Training Mathematics: Data, Loss, Objective, and Optimization</h2>
 
-        <h3>Teaching Narrative</h3>
-        <p>
-          Teach this module by first separating output types: regression predicts a
-          continuous value, classification predicts a discrete label. This single
-          distinction removes most beginner confusion.
-        </p>
-        <p>
-          Next, bridge deterministic label prediction with probabilistic thinking.
-          Show that many classifiers estimate class probabilities first, then apply a
-          decision threshold.
-        </p>
-
-        <h3>Key Concepts And Formulas</h3>
-        <div class="formula">
-          \[
-          \hat{y} = f(x)
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \hat{y} = wx + b
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{error}_i = y_i - \hat{y}_i
-          \]
-        </div>
-        <div class="formula">
-          \[
-          P(y=1 \mid x)
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \hat{y}=1 \quad \text{if} \quad P(y=1\mid x) \ge 0.5
-          \]
-        </div>
-
-        <h3>Slide Cues</h3>
-        <ul>
-          <li>Slide 8: anchor regression with local examples like demand forecasting.</li>
-          <li>Slide 9: explain the role of slope \(w\) and intercept \(b\).</li>
-          <li>Slide 10: connect per-sample error to training objective later.</li>
-          <li>Slide 11: define classification as label prediction from finite classes.</li>
-          <li>Slide 12: contrast binary and multiclass settings.</li>
-          <li>Slide 13: discuss threshold choice as a business decision.</li>
-        </ul>
-
-        <h3>Classroom Prompts</h3>
-        <ul>
-          <li>Ask: "Is malaria risk prediction regression or classification?"</li>
-          <li>Ask: "What changes when we move threshold from 0.5 to 0.8?"</li>
-        </ul>
-      </section>
-
-      <section id="module-3" class="panel">
-        <h2>Module 3: Training Math (Slides 14-18)</h2>
-        <p class="slide-range">Slides covered: 14, 15, 16, 17, 18</p>
-
-        <h3>Teaching Narrative</h3>
-        <p>
-          This module formalizes the ML pipeline mathematically. Students should leave
-          this section able to read symbolic notation without fear: dataset,
-          prediction function, loss, objective, and parameter updates.
-        </p>
-        <p>
-          Keep the intuition explicit: we search parameter space to reduce average
-          error over the training data.
-        </p>
-
-        <h3>Key Concepts And Formulas</h3>
+        <h3>Dataset and Matrix Notation</h3>
         <div class="formula">
           \[
           D=\{(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\}
           \]
         </div>
-        <div class="formula">
-          \[
-          X \in \mathbb{R}^{n \times d}, \quad y \in \mathbb{R}^{n}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \hat{y}=f_{\theta}(x)
-          \]
-        </div>
+        <div class="formula">\[ X \in \mathbb{R}^{n \times d}, \quad y \in \mathbb{R}^{n} \]</div>
+        <p>
+          Here \(n\) is number of examples, \(d\) is number of features, \(X\) is
+          the feature matrix, and \(y\) is the target vector.
+        </p>
+
+        <h3>Prediction Function and Parameters</h3>
+        <div class="formula">\[ \hat{y}=f_{\theta}(x) \]</div>
+        <p>
+          \(\theta\) contains learnable parameters. Training is parameter estimation.
+        </p>
+
+        <h3>Loss Function</h3>
+        <div class="formula">\[ L(y,\hat{y}) \]</div>
+        <p>
+          A loss function quantifies error for each example. Lower loss means better
+          fit to observed labels.
+        </p>
+        <p>Example for regression:</p>
+        <div class="formula">\[ L(y,\hat{y})=(y-\hat{y})^2 \]</div>
+
+        <h3>Training Objective (Empirical Risk)</h3>
         <div class="formula">
           \[
           J(\theta)=\frac{1}{n}\sum_{i=1}^{n}L\left(y_i,f_{\theta}(x_i)\right)
           \]
         </div>
-        <div class="formula">
-          \[
-          \theta \leftarrow \theta - \alpha \nabla_{\theta}J(\theta)
-          \]
-        </div>
+        <p>
+          The model is trained by finding parameter values that minimize average loss.
+        </p>
 
-        <h3>Slide Cues</h3>
+        <h3>Gradient Descent Update</h3>
+        <div class="formula">\[ \theta \leftarrow \theta - \alpha \nabla_{\theta}J(\theta) \]</div>
         <ul>
-          <li>Slide 14: explain \(n\) (rows/examples) and \(d\) (features/columns).</li>
-          <li>Slide 15: \(\theta\) are learnable parameters, not fixed constants.</li>
-          <li>Slide 16: loss is a per-example penalty; lower is better.</li>
-          <li>Slide 17: objective is average loss across all training examples.</li>
-          <li>Slide 18: gradient points uphill; update goes downhill.</li>
+          <li>\(\alpha\): learning rate (step size)</li>
+          <li>\(\nabla_{\theta}J(\theta)\): gradient of objective</li>
         </ul>
-
-        <h3>Classroom Prompts</h3>
-        <ul>
-          <li>Ask: "What happens if learning rate \(\alpha\) is too large?"</li>
-          <li>Ask: "Why do we average the loss over \(n\) examples?"</li>
-        </ul>
+        <p>
+          Too small learning rate slows convergence; too large can cause unstable
+          updates and divergence.
+        </p>
       </section>
 
-      <section id="module-4" class="panel">
-        <h2>Module 4: Evaluation Metrics (Slides 19-29)</h2>
-        <p class="slide-range">Slides covered: 19 through 29</p>
+      <section id="evaluation" class="panel">
+        <h2>Evaluation: Choosing the Right Metrics</h2>
 
-        <h3>Teaching Narrative</h3>
+        <h3>Why Evaluation Is Separate From Training</h3>
         <p>
-          Reinforce the central idea: training success does not equal deployment
-          usefulness. Evaluation answers whether the model generalizes, what mistakes
-          it makes, and whether those mistakes are acceptable for the task.
-        </p>
-        <p>
-          For regression, quantify numeric prediction error. For classification,
-          inspect confusion patterns and trade-offs between precision and recall.
+          Good training performance does not guarantee real-world usefulness. Evaluation
+          checks generalization on unseen data and reveals error behavior.
         </p>
 
         <h3>Regression Metrics</h3>
-        <div class="formula">
-          \[
-          \text{MAE}=\frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i|
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{RMSE}=\sqrt{\text{MSE}}
-          \]
-        </div>
+        <div class="formula">\[ \text{MAE}=\frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i| \]</div>
+        <div class="formula">\[ \text{MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2 \]</div>
+        <div class="formula">\[ \text{RMSE}=\sqrt{\text{MSE}} \]</div>
+        <ul>
+          <li>MAE is easy to interpret in original units.</li>
+          <li>MSE penalizes large errors strongly.</li>
+          <li>RMSE returns MSE scale back to target units.</li>
+        </ul>
+
+        <h3>Confusion Matrix for Classification</h3>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Predicted Positive</th>
+              <th>Predicted Negative</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Actual Positive</td>
+              <td>TP</td>
+              <td>FN</td>
+            </tr>
+            <tr>
+              <td>Actual Negative</td>
+              <td>FP</td>
+              <td>TN</td>
+            </tr>
+          </tbody>
+        </table>
 
         <h3>Classification Metrics</h3>
-        <p>Confusion terms: TP, TN, FP, FN</p>
-        <div class="formula">
-          \[
-          \text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{Precision}=\frac{TP}{TP+FP}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          \text{Recall}=\frac{TP}{TP+FN}
-          \]
-        </div>
+        <div class="formula">\[ \text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN} \]</div>
+        <div class="formula">\[ \text{Precision}=\frac{TP}{TP+FP} \]</div>
+        <div class="formula">\[ \text{Recall}=\frac{TP}{TP+FN} \]</div>
         <div class="formula">
           \[
           F_1=2\cdot\frac{\text{Precision}\cdot\text{Recall}}{\text{Precision}+\text{Recall}}
           \]
         </div>
-
-        <h3>Slide Cues</h3>
-        <ul>
-          <li>Slides 20-23: explain why RMSE penalizes large misses heavily.</li>
-          <li>Slide 25: draw the confusion matrix and label each cell aloud.</li>
-          <li>Slide 26: show why accuracy fails under class imbalance.</li>
-          <li>Slides 27-28: connect precision/recall to FP/FN business cost.</li>
-          <li>Slide 29: present F1 as a balanced compromise metric.</li>
-        </ul>
-
-        <h3>Classroom Prompts</h3>
-        <ul>
-          <li>Ask: "In disease screening, which is worse: FP or FN?"</li>
-          <li>Ask: "When would you prefer MAE over RMSE?"</li>
-        </ul>
+        <p>
+          Accuracy can be misleading in imbalanced datasets. Precision and recall
+          should be chosen according to cost of false positives versus false negatives.
+        </p>
       </section>
 
-      <section id="module-5" class="panel">
-        <h2>Module 5: Data Cleaning And Scaling (Slides 30-32)</h2>
-        <p class="slide-range">Slides covered: 30, 31, 32</p>
+      <section id="cleaning" class="panel">
+        <h2>Data Cleaning and Feature Scaling</h2>
 
-        <h3>Teaching Narrative</h3>
+        <h3>Why Cleaning Comes Before Modeling</h3>
         <p>
-          Stress that preprocessing is not optional. Data quality defines the ceiling
-          of model quality. Poorly treated missing values or inconsistent scales can
-          dominate model behavior more than algorithm choice.
+          Models learn directly from data quality. Missing values, duplicates, wrong
+          dtypes, outliers, and inconsistent feature scales degrade model reliability.
         </p>
+        <div class="formula">\[ \text{Poor data} \rightarrow \text{Poor model} \]</div>
 
-        <h3>Key Formulas</h3>
-        <div class="formula">
-          \[
-          z=\frac{x-\mu}{\sigma}
-          \]
-        </div>
-        <div class="formula">
-          \[
-          x'=\frac{x-x_{\min}}{x_{\max}-x_{\min}}
-          \]
-        </div>
-
-        <h3>Slide Cues</h3>
+        <h3>Handling Missing Values</h3>
         <ul>
-          <li>Slide 30: list common data quality problems before modeling begins.</li>
-          <li>Slide 31: compare row deletion, mean/median/mode imputation, model-based imputation.</li>
-          <li>Slide 32: explain why scaling matters for KNN, K-Means, logistic regression, neural nets.</li>
+          <li>Drop rows or columns when missingness is extreme or unusable.</li>
+          <li>Impute with mean, median, mode, or context-aware group statistics.</li>
+          <li>Use model-based imputation when structure supports it.</li>
+          <li>Avoid leakage: fit imputation parameters on training set only.</li>
         </ul>
 
-        <h3>Classroom Prompts</h3>
-        <ul>
-          <li>Ask: "When might median be better than mean for imputation?"</li>
-          <li>Ask: "Why is scaling less critical for tree-based methods?"</li>
-        </ul>
+        <h3>Scaling Methods</h3>
+        <div class="formula">\[ z=\frac{x-\mu}{\sigma} \]</div>
+        <div class="formula">\[ x'=\frac{x-x_{\min}}{x_{\max}-x_{\min}} \]</div>
+        <p>
+          Scaling is especially important for distance-based and gradient-based methods
+          such as KNN, K-Means, Logistic Regression, and Neural Networks.
+        </p>
       </section>
 
-      <section id="module-6" class="panel">
-        <h2>Module 6: Workflow And Model Validation (Slides 33-35)</h2>
-        <p class="slide-range">Slides covered: 33, 34, 35</p>
-
-        <h3>Teaching Narrative</h3>
-        <p>
-          Present ML as a repeatable lifecycle, not a one-shot model fit. Clean split
-          discipline is essential for honest performance estimation.
-        </p>
-
-        <h3>Workflow And Validation</h3>
-        <div class="formula">
-          \[
-          \text{Data} \to \text{Clean} \to \text{Split} \to \text{Train} \to \text{Evaluate} \to \text{Improve}
-          \]
-        </div>
-        <ul>
-          <li>Train set: learn parameters.</li>
-          <li>Validation set: tune model choices and hyperparameters.</li>
-          <li>Test set: final unbiased estimate of generalization.</li>
-        </ul>
-
-        <h3>Generalization Patterns</h3>
-        <ul>
-          <li>Underfitting: weak train and weak test performance.</li>
-          <li>Good fit: strong train and strong test performance.</li>
-          <li>Overfitting: strong train but weak test performance.</li>
-        </ul>
-
-        <h3>Classroom Prompts</h3>
-        <ul>
-          <li>Ask: "Why must we avoid repeated tuning on the test set?"</li>
-          <li>Ask: "What is one practical sign of overfitting in metrics?"</li>
-        </ul>
-      </section>
-
-      <section id="module-7" class="panel">
-        <h2>Module 7: Broader AI Concepts (Slides 36-39)</h2>
-        <p class="slide-range">Slides covered: 36, 37, 38, 39</p>
-
-        <h3>Teaching Narrative</h3>
-        <p>
-          Expand student perspective beyond tabular supervised learning. Show that
-          core ML principles transfer to vision, language, recommendation, and
-          generative systems, even though data modalities and model architectures differ.
-        </p>
-
-        <h3>Domain Frames</h3>
-        <ul>
-          <li>Computer Vision: classification, detection, segmentation, recognition.</li>
-          <li>NLP: text classification, translation, summarization, question answering.</li>
-          <li>Recommendation: predict user-item relevance.</li>
-          <li>Generative AI: create new text, images, audio, code, video.</li>
-        </ul>
+      <section id="workflow" class="panel">
+        <h2>End-to-End Workflow and Validation Discipline</h2>
 
         <div class="formula">
           \[
-          \text{Recommendation: User Behavior + Item Information} \to \text{Recommendation}
+          \text{Data} \rightarrow \text{Clean} \rightarrow \text{Split} \rightarrow \text{Train} \rightarrow \text{Evaluate} \rightarrow \text{Improve}
           \]
         </div>
 
-        <h3>Classroom Prompts</h3>
+        <h3>Split Roles</h3>
         <ul>
-          <li>Ask: "What data do we need for a music recommender?"</li>
-          <li>Ask: "How is generative AI different from predictive classification?"</li>
+          <li>Training set: estimate model parameters.</li>
+          <li>Validation set: compare models and tune hyperparameters.</li>
+          <li>Test set: one final unbiased estimate of generalization.</li>
+        </ul>
+
+        <h3>Fitting Patterns</h3>
+        <ul>
+          <li>Underfitting: poor training and poor test performance.</li>
+          <li>Good fit: strong training and strong test performance.</li>
+          <li>Overfitting: strong training but weak test performance.</li>
+        </ul>
+        <p>Do not repeatedly tune on the test set.</p>
+      </section>
+
+      <section id="broader-ai" class="panel">
+        <h2>Broader AI Domains</h2>
+
+        <h3>Computer Vision</h3>
+        <ul>
+          <li>Image classification, object detection, segmentation, recognition.</li>
+          <li>Examples: crop disease detection, traffic analysis, medical imaging.</li>
+        </ul>
+
+        <h3>Natural Language Processing</h3>
+        <ul>
+          <li>Text classification, translation, summarization, QA, chatbots.</li>
+          <li>Examples: customer feedback analysis, report summarization.</li>
+        </ul>
+
+        <h3>Recommendation Systems</h3>
+        <div class="formula">
+          \[
+          \text{User behavior + Item information} \rightarrow \text{Recommendation}
+          \]
+        </div>
+        <ul>
+          <li>Use cases: movies, products, music, news feed ranking.</li>
+        </ul>
+
+        <h3>Generative AI</h3>
+        <ul>
+          <li>Produces new text, images, code, audio, and video content.</li>
+          <li>Differs from predictive ML, which predicts labels or numeric values.</li>
         </ul>
       </section>
 
-      <section id="module-8" class="panel">
-        <h2>Module 8: Practical Notebook Roadmap (Slides 40-42)</h2>
-        <p class="slide-range">Slides covered: 40, 41, 42</p>
+      <section id="practical" class="panel">
+        <h2>Practical Session Content</h2>
 
-        <h3>Teaching Narrative</h3>
-        <p>
-          This section transitions theory to practice. Students should execute a full
-          modeling loop: inspect data, preprocess, train, evaluate, and interpret.
-          Encourage them to explain every result, not only pass automated checks.
-        </p>
-
-        <h3>Practical Workflow Steps</h3>
+        <h3>Notebook Workflow in Class</h3>
         <ol>
-          <li>Load and inspect dataset structure.</li>
-          <li>Handle missing values and categorical variables.</li>
-          <li>Split data correctly.</li>
+          <li>Load data and inspect schema.</li>
+          <li>Handle missing values and clean columns.</li>
+          <li>Encode categorical features.</li>
+          <li>Split data into train/validation/test partitions.</li>
           <li>Train baseline and improved models.</li>
-          <li>Evaluate with task-appropriate metrics.</li>
-          <li>Produce challenge submission probabilities in required format.</li>
+          <li>Evaluate metrics and interpret mistakes.</li>
+          <li>Prepare challenge submission probabilities.</li>
         </ol>
 
-        <h3>Practical Metrics To Revisit</h3>
+        <h3>Exercise Style</h3>
         <ul>
-          <li>Regression: MAE, RMSE, \(R^2\).</li>
-          <li>Classification: Precision, Recall, F1, ROC-AUC, PR-AUC.</li>
-          <li>Competition ranking: PR-AUC first, then F1, then lower log loss.</li>
+          <li>Guided code cells with intentional blanks.</li>
+          <li>Validation checks for implementation correctness.</li>
+          <li>Reasoning and interpretation are required, not only passing checks.</li>
+        </ul>
+
+        <h3>Key Outcomes for Students</h3>
+        <ul>
+          <li>Understand model behavior and metrics beyond raw accuracy.</li>
+          <li>Run notebooks cleanly from top to bottom without leakage.</li>
+          <li>Export predictions in required challenge format.</li>
         </ul>
       </section>
 
       <section id="notebooks" class="panel">
-        <h2>Download Notebooks And Open In Your Preferred IDE</h2>
+        <h2>Notebook Downloads and IDE Instructions</h2>
         <p>
-          Students should download each notebook, then open locally in Jupyter
-          Notebook, JupyterLab, VS Code, PyCharm, or any IDE that supports
-          <code>.ipynb</code>.
+          Students should download notebook files and open them locally in their
+          preferred IDE: Jupyter Notebook, JupyterLab, VS Code, PyCharm, or any tool
+          supporting <code>.ipynb</code>.
         </p>
+        <p id="download-status" class="status"></p>
 
-        <h3>Recommended Student Setup</h3>
+        <h3>Recommended Local Setup</h3>
         <pre><code>pip install -r requirements.txt
 jupyter notebook</code></pre>
 
-        <h3>Notebook Downloads (Run In Order)</h3>
+        <h3>Download Files</h3>
         <ol class="notebook-list">
           <li>
-            <strong>01 Intro Bike Demand Regression</strong> (60-90 min)
+            <strong>Intro Bike Demand Regression</strong>
             <div class="actions">
-              <a
+              <button
+                type="button"
                 class="btn"
+                data-download-file="../notebooks/01_intro_bike_demand_regression_instructor.ipynb"
+                data-download-name="01_intro_bike_demand_regression_instructor.ipynb"
+              >
+                Download Notebook
+              </button>
+              <a
+                class="fallback-link"
                 href="../notebooks/01_intro_bike_demand_regression_instructor.ipynb"
-                download="01_intro_bike_demand_regression_instructor.ipynb"
-                >Download Notebook 1</a
+                target="_blank"
+                rel="noopener noreferrer"
+                >Fallback open link</a
               >
             </div>
           </li>
           <li>
-            <strong>02 Bike Demand Advanced Extension</strong> (45-75 min)
+            <strong>Bike Demand Advanced Extension</strong>
             <div class="actions">
-              <a
+              <button
+                type="button"
                 class="btn"
+                data-download-file="../notebooks/02_bike_demand_regression_advanced_extension.ipynb"
+                data-download-name="02_bike_demand_regression_advanced_extension.ipynb"
+              >
+                Download Notebook
+              </button>
+              <a
+                class="fallback-link"
                 href="../notebooks/02_bike_demand_regression_advanced_extension.ipynb"
-                download="02_bike_demand_regression_advanced_extension.ipynb"
-                >Download Notebook 2</a
+                target="_blank"
+                rel="noopener noreferrer"
+                >Fallback open link</a
               >
             </div>
           </li>
           <li>
-            <strong>03 Challenge Bank Marketing Classification</strong> (60-90 min)
+            <strong>Challenge Bank Marketing Classification</strong>
             <div class="actions">
-              <a
+              <button
+                type="button"
                 class="btn"
+                data-download-file="../notebooks/03_challenge_bank_marketing_classification.ipynb"
+                data-download-name="03_challenge_bank_marketing_classification.ipynb"
+              >
+                Download Notebook
+              </button>
+              <a
+                class="fallback-link"
                 href="../notebooks/03_challenge_bank_marketing_classification.ipynb"
-                download="03_challenge_bank_marketing_classification.ipynb"
-                >Download Notebook 3</a
+                target="_blank"
+                rel="noopener noreferrer"
+                >Fallback open link</a
               >
             </div>
           </li>
         </ol>
 
-        <h3>Challenge Submission Format</h3>
+        <h3>Challenge Submission Template</h3>
         <p>Required CSV schema: <code>id,y_prob</code></p>
         <div class="actions">
-          <a class="btn" href="../templates/submission_template.csv" download="submission_template.csv"
-            >Download Submission Template</a
+          <button
+            type="button"
+            class="btn"
+            data-download-file="../templates/submission_template.csv"
+            data-download-name="submission_template.csv"
+          >
+            Download CSV Template
+          </button>
+          <a
+            class="fallback-link"
+            href="../templates/submission_template.csv"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Fallback open link</a
           >
         </div>
       </section>
