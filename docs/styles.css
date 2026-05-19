@@ -218,10 +218,16 @@ li {
   margin-bottom: 0.8rem;
 }
 
-.notebook-desc {
-  margin: 0.32rem 0 0.45rem;
-  color: #3b4a60;
-  font-size: 0.97rem;
+.notebook-story {
+  margin: 0.34rem 0 0.42rem;
+  color: #2f3f53;
+  font-size: 0.96rem;
+}
+
+.story-label {
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-weight: 700;
+  color: #16253a;
 }
 
 .prize-note {
