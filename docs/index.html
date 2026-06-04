@@ -22,56 +22,6 @@
         }
       };
     </script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    ></script>
-    <script defer>
-      async function forceNotebookDownload(filePath, fileName) {
-        const status = document.getElementById("download-status");
-        try {
-          if (status) {
-            status.textContent = `Preparing download: ${fileName}`;
-          }
-
-          const response = await fetch(filePath, { cache: "no-store" });
-          if (!response.ok) {
-            throw new Error("Download request failed.");
-          }
-
-          const blob = await response.blob();
-          const blobUrl = URL.createObjectURL(blob);
-
-          const anchor = document.createElement("a");
-          anchor.href = blobUrl;
-          anchor.download = fileName;
-          document.body.appendChild(anchor);
-          anchor.click();
-          anchor.remove();
-
-          URL.revokeObjectURL(blobUrl);
-          if (status) {
-            status.textContent = `Downloaded: ${fileName}`;
-          }
-        } catch (error) {
-          if (status) {
-            status.textContent =
-              "Download failed in browser. Use the fallback link next to the button.";
-          }
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const buttons = document.querySelectorAll("[data-download-file]");
-        buttons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const file = button.getAttribute("data-download-file");
-            const name = button.getAttribute("data-download-name");
-            forceNotebookDownload(file, name);
-          });
-        });
-      });
-    </script>
   </head>
   <body>
     <header class="hero">
@@ -861,174 +811,111 @@
       </section>
 
       <section id="notebooks" class="panel">
-        <h2>Notebook Downloads and IDE Instructions</h2>
-        <p>
-          Students should download notebook files and open them locally in their
-          preferred IDE: Jupyter Notebook, JupyterLab, VS Code, PyCharm, or any tool
-          supporting <code>.ipynb</code>.
-        </p>
-        <p id="download-status" class="status"></p>
+  <h2>Open Notebooks in Google Colab</h2>
+  <p>
+    Students should open the notebooks directly in Google Colab. No local setup,
+    IDE installation, or notebook download is required.
+  </p>
 
-        <h3>Recommended Local Setup</h3>
-        <pre><code>pip install -r requirements.txt
-jupyter notebook</code></pre>
-        <p>
-          Download dependencies file first, then run install in your local terminal.
-        </p>
-        <div class="actions">
-          <button
-            type="button"
-            class="btn"
-            data-download-file="../requirements.txt"
-            data-download-name="requirements.txt"
-          >
-            Download requirements.txt
-          </button>
-          <a
-            class="fallback-link"
-            href="../requirements.txt"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Fallback open link</a
-          >
-        </div>
+  <ol class="notebook-list">
+    <li>
+      <strong>Intro Bike Demand Regression</strong>
+      <p class="notebook-story">
+        <span class="story-label">Problem story:</span> A city bike service is
+        struggling every day. Some stations run out of bikes during peak times,
+        while others have too many idle bikes. This creates customer frustration
+        and operational waste.
+      </p>
+      <p class="notebook-story">
+        <span class="story-label">Your mission:</span> Use historical demand and
+        context features to predict bike demand as a number. You clean data,
+        build a first regression model, and learn how to interpret MAE and RMSE
+        as business-facing error.
+      </p>
+      <p class="notebook-story">
+        <span class="story-label">What success looks like:</span> You can explain
+        whether the model is reliable enough for planning inventory at different
+        times of day.
+      </p>
+      <div class="actions">
+        <a
+          class="btn"
+          href="https://colab.research.google.com/github/RumbidzaiGwinji/IntroductionToML/blob/main/notebooks/01_intro_bike_demand_regression_instructor.ipynb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Colab
+        </a>
+      </div>
+    </li>
 
-        <h3>Download Files</h3>
-        <ol class="notebook-list">
-          <li>
-            <strong>Intro Bike Demand Regression</strong>
-            <p class="notebook-story">
-              <span class="story-label">Problem story:</span> A city bike service is
-              struggling every day. Some stations run out of bikes during peak times,
-              while others have too many idle bikes. This creates customer frustration
-              and operational waste.
-            </p>
-            <p class="notebook-story">
-              <span class="story-label">Your mission:</span> Use historical demand and
-              context features (time patterns, weather, usage signals) to predict bike
-              demand as a number. You clean data, build a first regression model, and
-              learn how to interpret MAE and RMSE as business-facing error.
-            </p>
-            <p class="notebook-story">
-              <span class="story-label">What success looks like:</span> You can explain
-              whether the model is reliable enough for planning inventory at different
-              times of day.
-            </p>
-            <div class="actions">
-              <button
-                type="button"
-                class="btn"
-                data-download-file="../notebooks/01_intro_bike_demand_regression_instructor.ipynb"
-                data-download-name="01_intro_bike_demand_regression_instructor.ipynb"
-              >
-                Download Notebook
-              </button>
-              <a
-                class="fallback-link"
-                href="../notebooks/01_intro_bike_demand_regression_instructor.ipynb"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Fallback open link</a
-              >
-            </div>
-          </li>
-          <li>
-            <strong>Bike Demand Advanced Extension</strong>
-            <p class="notebook-story">
-              <span class="story-label">Problem story:</span> The first model works,
-              but still misses important patterns (for example, unusual weather days or
-              rush-hour behavior). Forecast errors now have real operational cost.
-            </p>
-            <p class="notebook-story">
-              <span class="story-label">Your mission:</span> Improve the baseline with
-              better feature preparation, stronger modeling choices, and careful model
-              comparison. You test whether improvements hold on unseen data, not just
-              training data.
-            </p>
-            <p class="notebook-story">
-              <span class="story-label">What success looks like:</span> You can justify
-              why the upgraded model generalizes better and where it still fails.
-            </p>
-            <div class="actions">
-              <button
-                type="button"
-                class="btn"
-                data-download-file="../notebooks/02_bike_demand_regression_advanced_extension.ipynb"
-                data-download-name="02_bike_demand_regression_advanced_extension.ipynb"
-              >
-                Download Notebook
-              </button>
-              <a
-                class="fallback-link"
-                href="../notebooks/02_bike_demand_regression_advanced_extension.ipynb"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Fallback open link</a
-              >
-            </div>
-          </li>
-          <li>
-            <strong>Challenge Bank Marketing Classification</strong>
-            <p class="notebook-story">
-              <span class="story-label">Problem story:</span> A bank is running a
-              marketing campaign for term deposits. Calling every customer is expensive
-              and inefficient, so the team needs to prioritize who is most likely to
-              respond positively.
-            </p>
-            <p class="notebook-story">
-              <span class="story-label">Your mission:</span> Build a classification
-              pipeline that predicts response probability for each customer. Instead of
-              only hard labels, you produce calibrated probabilities for leaderboard
-              scoring and better decision-making.
-            </p>
-            <p class="notebook-story">
-              <span class="story-label">What success looks like:</span> You submit a
-              valid file in the required format and improve ranking through better
-              feature handling, model tuning, and evaluation discipline.
-            </p>
-            <p class="prize-note">
-              Cash prizes are awarded to the top 3 winners on the leaderboard.
-            </p>
-            <div class="actions">
-              <button
-                type="button"
-                class="btn"
-                data-download-file="../notebooks/03_challenge_bank_marketing_classification.ipynb"
-                data-download-name="03_challenge_bank_marketing_classification.ipynb"
-              >
-                Download Notebook
-              </button>
-              <a
-                class="fallback-link"
-                href="../notebooks/03_challenge_bank_marketing_classification.ipynb"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Fallback open link</a
-              >
-            </div>
-          </li>
-        </ol>
+    <li>
+      <strong>Bike Demand Advanced Extension</strong>
+      <p class="notebook-story">
+        <span class="story-label">Problem story:</span> The first model works,
+        but still misses important patterns, such as unusual weather days or
+        rush-hour behavior. Forecast errors now have real operational cost.
+      </p>
+      <p class="notebook-story">
+        <span class="story-label">Your mission:</span> Improve the baseline with
+        better feature preparation, stronger modeling choices, and careful model
+        comparison. You test whether improvements hold on unseen data, not just
+        training data.
+      </p>
+      <p class="notebook-story">
+        <span class="story-label">What success looks like:</span> You can justify
+        why the upgraded model generalizes better and where it still fails.
+      </p>
+      <div class="actions">
+        <a
+          class="btn"
+          href="https://colab.research.google.com/github/RumbidzaiGwinji/IntroductionToML/blob/main/notebooks/02_bike_demand_regression_advanced_extension.ipynb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Colab
+        </a>
+      </div>
+    </li>
 
-        <h3>Challenge Submission Template</h3>
-        <p>Required CSV schema: <code>id,y_prob</code></p>
-        <div class="actions">
-          <button
-            type="button"
-            class="btn"
-            data-download-file="../templates/submission_template.csv"
-            data-download-name="submission_template.csv"
-          >
-            Download CSV Template
-          </button>
-          <a
-            class="fallback-link"
-            href="../templates/submission_template.csv"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Fallback open link</a
-          >
-        </div>
-      </section>
+    <li>
+      <strong>Challenge Bank Marketing Classification</strong>
+      <p class="notebook-story">
+        <span class="story-label">Problem story:</span> A bank is running a
+        marketing campaign for term deposits. Calling every customer is expensive
+        and inefficient, so the team needs to prioritize who is most likely to
+        respond positively.
+      </p>
+      <p class="notebook-story">
+        <span class="story-label">Your mission:</span> Build a classification
+        pipeline that predicts response probability for each customer. Instead of
+        only hard labels, you produce calibrated probabilities for leaderboard
+        scoring and better decision-making.
+      </p>
+      <p class="notebook-story">
+        <span class="story-label">What success looks like:</span> You submit a
+        valid file in the required format and improve ranking through better
+        feature handling, model tuning, and evaluation discipline.
+      </p>
+      <p class="prize-note">
+        Cash prizes are awarded to the top 3 winners on the leaderboard.
+      </p>
+      <div class="actions">
+        <a
+          class="btn"
+          href="https://colab.research.google.com/github/RumbidzaiGwinji/IntroductionToML/blob/main/notebooks/03_challenge_bank_marketing_classification.ipynb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Colab
+        </a>
+      </div>
+    </li>
+  </ol>
+
+  <h3>Challenge Submission Format</h3>
+  <p>Required CSV schema: <code>id,y_prob</code></p>
+</section>
 
       <section id="glossary" class="panel">
         <h2>Glossary</h2>
